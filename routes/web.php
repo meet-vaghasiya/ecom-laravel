@@ -14,17 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::redirect('/', 'dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
 
-Route::prefix('admin')->group(function(){
-    Route::prefix('users')->group(function(){
-        Route::get('/',[UserController::class,'index']);
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
     });
 });
