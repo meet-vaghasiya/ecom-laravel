@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,9 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         if ($this->app->environment() !== 'production') {
-        $this->app->register(\Sven\ArtisanView\ServiceProvider::class);
-    } 
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Sven\ArtisanView\ServiceProvider::class);
+        }
     }
 
     /**
@@ -25,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Paginator::useBootstrap();
     }
 }
