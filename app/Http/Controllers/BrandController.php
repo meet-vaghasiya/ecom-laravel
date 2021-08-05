@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Brand\StoreRequest;
+use App\Http\Requests\Brand\UpdateRequest;
 use App\Models\Brand;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -14,7 +19,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::latest()->paginate(10);
+        return view('brands.index', compact('brands'));
     }
 
     /**
@@ -33,9 +39,24 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $brand = Brand::create([
+            'name' => $request->input('name'),
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $brandLogoFile = $request->file('logo');
+
+            $randomName = Str::random(20);
+            $originalExtension = $brandLogoFile->getClientOriginalExtension();
+            $storeAs = $randomName . '.' . $originalExtension;
+
+            Storage::disk('brands')->putFileAs('', $brandLogoFile, $storeAs);
+            $brand->path = $storeAs;
+            $brand->save();
+        }
+        return redirect()->route('admin.brands.index')->with('success', $brand->name . 'created successfully');
     }
 
     /**
@@ -55,9 +76,10 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        return view('brands.edit', compact('brand'));
     }
 
     /**
@@ -67,9 +89,26 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(UpdateRequest $request, $id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->name = $request->name;
+        $brand->save();
+
+        if ($request->hasFile('logo')) {
+            $brandLogoFile = $request->file('logo');
+
+            $randomName = Str::random(20);
+            $originalExtension = $brandLogoFile->getClientOriginalExtension();
+            $storeAs = $randomName . '.' . $originalExtension;
+            Storage::disk('brands')->delete($brand->path);  // add conditito that if file exists than only remove or delte
+
+            $brand->path  = $storeAs;
+            $brand->save();
+            Storage::disk('brands')->putFileAs('', $brandLogoFile, $storeAs);
+        }
+
+        return redirect()->back()->with('success', $brand->name . ' updated succesfully.');
     }
 
     /**
@@ -78,8 +117,12 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function delete($id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        Storage::disk('brands')->delete($brand->path);
+
+        $brand =  $brand->delete();
+        return redirect()->route('admin.brands.index')->with('success', '');
     }
 }

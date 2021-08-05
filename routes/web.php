@@ -31,8 +31,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('index');
     });
-    Route::prefix('brands')->name('brand.')->group(function () {
+    Route::prefix('brands')->name('brands.')->group(function () {
         Route::get('/', [BrandController::class, 'index'])->name('index');
+        Route::post('/store', [BrandController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [BrandController::class, 'update'])->name('update');
+
+        Route::get('/delete/{id}', [BrandController::class, 'delete'])->name('delete');
     });
 
     Route::prefix("categories")->name('categories.')->group(function () {

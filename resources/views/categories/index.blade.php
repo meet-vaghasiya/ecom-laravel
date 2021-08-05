@@ -36,7 +36,7 @@
                                 <tr>
                                     <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->user_id }}</td>
+                                    <td>{{ $category->user ? $category->user->name : '' }}</td>
                                     <td>{{ $category->created_at->diffForHumans() }}</td>
                                     <td>
                                         <a class="btn btn-primary"
@@ -118,7 +118,7 @@
                                 <tr>
                                     <th scope="row">{{ $categories->firstItem() + $loop->index }}</th>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->user_id }}</td>
+                                    <td>{{ $category->user ? $category->user->name : '' }}</td>
                                     <td>{{ $category->created_at->diffForHumans() }}</td>
                                     <td>
                                         <a class="btn btn-primary"

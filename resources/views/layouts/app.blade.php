@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.brand.index') }}">Brands</a>
+                            <a class="nav-link" href="{{ route('admin.brands.index') }}">Brands</a>
                         </li>
                     </ul>
                 </div>

@@ -11,4 +11,9 @@ class Category extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'user_id'];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
