@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Brand;
+namespace App\Http\Requests\MultiImage;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class StoreRequeset extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>  "required|unique:brands,name,$this->id|max:30|min:2",
-            'logo' => 'nullable|mimes:png,jpg|max:2048'
+            'avatar.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MultiImageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +37,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/store', [BrandController::class, 'store'])->name('store');
         Route::get('/edit/{id}', [BrandController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [BrandController::class, 'update'])->name('update');
-
         Route::get('/delete/{id}', [BrandController::class, 'delete'])->name('delete');
     });
 
@@ -49,4 +49,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/restore/{id}', [CategoryController::class, 'restore'])->name('restore');
         Route::get('/force-delete/{id}', [CategoryController::class, 'forceDelete'])->name('force-delete');
     });
+
+    Route::get('multi-image', [MultiImageController::class, 'index'])->name('multi-image.index');
+    Route::post('multi-image', [MultiImageController::class, 'store'])->name('mutli-image.store');
 });

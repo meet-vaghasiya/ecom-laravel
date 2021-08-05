@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' =>  'required|unique:brands,name|max:30|min:2',
-            'logo' => 'nullable|file|mimes:png,jpg'
+            'logo' => 'nullable|file|mimes:png,jpg|max:2048'
         ];
     }
 }

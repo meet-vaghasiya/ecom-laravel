@@ -47,6 +47,12 @@ return [
             'url' => env('APP_URL') . '/uploads/brands',
             'visibility' => 'public',
         ],
+        'multi-image' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/multi-image'),
+            'url' => env('APP_URL') . '/uploads/multi-image',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

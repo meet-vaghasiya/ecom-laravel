@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.brands.index') }}">Brands</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.multi-image.index') }}">Multi image</a>
+                        </li>
                     </ul>
                 </div>
             </div>
