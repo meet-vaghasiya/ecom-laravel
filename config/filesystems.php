@@ -53,6 +53,12 @@ return [
             'url' => env('APP_URL') . '/uploads/multi-image',
             'visibility' => 'public',
         ],
+        'home-slider' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/home-slider'),
+            'url' => env('APP_URL') . '/uploads/home-slider',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

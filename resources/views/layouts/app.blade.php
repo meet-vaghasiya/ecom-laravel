@@ -44,6 +44,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.multi-image.index') }}">Multi image</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.sliders.index') }}">Home Slider</a>
+                        </li>
                     </ul>
                 </div>
             </div>
