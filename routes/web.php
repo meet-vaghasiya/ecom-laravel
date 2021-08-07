@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminContactController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactRequestController;
 use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\MultiImageController;
 use App\Http\Controllers\UserController;
@@ -59,6 +62,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/delete/{id}', [HomeSliderController::class, 'delete'])->name('delete');
     });
 
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::get('/', [AdminContactController::class, 'index'])->name('index');
+        Route::post('/store', [AdminContactController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [AdminContactController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [AdminContactController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [AdminContactController::class, 'delete'])->name('delete');
+    });
+    Route::prefix('contact-request')->name('contact-request.')->group(function () {
+        Route::get('/', [ContactRequestController::class, 'index'])->name('index');
+        Route::post('/store', [ContactRequestController::class, 'store'])->name('store');
+        Route::get('/delete/{id}', [ContactRequestController::class, 'delete'])->name('delete');
+    });
 
     Route::get('multi-image', [MultiImageController::class, 'index'])->name('multi-image.index');
     Route::post('multi-image', [MultiImageController::class, 'store'])->name('mutli-image.store');

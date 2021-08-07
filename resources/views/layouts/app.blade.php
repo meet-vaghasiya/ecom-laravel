@@ -47,6 +47,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.sliders.index') }}">Home Slider</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.contact.index') }}">Admin Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.contact-request.index') }}">Contact Request</a>
+                        </li>
                     </ul>
                 </div>
             </div>
