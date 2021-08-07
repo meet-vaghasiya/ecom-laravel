@@ -12,7 +12,7 @@ class ContactRequestController extends Controller
     public function index()
     {
         $contactRequests = ContactRequest::latest()->get();
-        return view('contact-request.index', compact('contactRequests'));
+        return view('admin.contact-request.index', compact('contactRequests'));
     }
 
     public function store(ContactRequestStoreRequest $request)

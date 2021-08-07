@@ -15,7 +15,7 @@ class MultiImageController extends Controller
     {
         $multiImages =  MultiImage::get();
 
-        return view('multi-image.index', compact('multiImages'));
+        return view('admin.multi-image.index', compact('multiImages'));
     }
 
     public function store(StoreRequeset $request)

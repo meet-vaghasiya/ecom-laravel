@@ -20,7 +20,7 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::latest()->paginate(10);
-        return view('brands.index', compact('brands'));
+        return view('admin.brands.index', compact('brands'));
     }
 
     /**
@@ -79,7 +79,7 @@ class BrandController extends Controller
     public function edit($id)
     {
         $brand = Brand::findOrFail($id);
-        return view('brands.edit', compact('brand'));
+        return view('admin.brands.edit', compact('brand'));
     }
 
     /**

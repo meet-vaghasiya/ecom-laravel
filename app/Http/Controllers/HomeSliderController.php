@@ -14,7 +14,7 @@ class HomeSliderController extends Controller
     {
         // HomeSlider::truncate();
         $sliders = HomeSlider::latest()->paginate(10);
-        return view('slider.index', compact('sliders'));
+        return view('admin.slider.index', compact('sliders'));
     }
 
     public function store(HomeSliderRequest $request)
@@ -39,7 +39,7 @@ class HomeSliderController extends Controller
     public function edit($id)
     {
         $homeSlider = HomeSlider::findOrFail($id);
-        return view('slider.edit', compact('homeSlider'));
+        return view('admin.slider.edit', compact('homeSlider'));
     }
 
     public function update(Request $request, $id)

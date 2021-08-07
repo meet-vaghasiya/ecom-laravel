@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $categories = Category::latest()->paginate(5);
         $onlyTrashedCategory = Category::onlyTrashed()->latest()->paginate(3);
-        return view('categories.index', compact('categories', 'onlyTrashedCategory'));
+        return view('admin.categories.index', compact('categories', 'onlyTrashedCategory'));
     }
 
     /**
@@ -67,7 +67,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
-        return view('categories.edit', compact('category'));
+        return view('admin.categories.edit', compact('category'));
         //
     }
 
